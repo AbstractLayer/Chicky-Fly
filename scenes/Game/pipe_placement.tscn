@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dflqr61qbx8xj"]
+
+[ext_resource type="Script" path="res://scenes/Game/pipe_placement_script_extended.gd" id="1_bsjco"]
+[ext_resource type="Texture2D" uid="uid://ci6v1nb6vfmnx" path="res://textures/sprites/pipe.png" id="2_53g1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwxp8"]
+size = Vector2(72, 414)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eu2r"]
+size = Vector2(25, 100)
+
+[node name="Placement" type="Node2D"]
+script = ExtResource("1_bsjco")
+pipe_separation = 50.0
+
+[node name="PipeUp" type="StaticBody2D" parent="." groups=["Pipes"]]
+position = Vector2(36, 364)
+collision_layer = 4
+collision_mask = 17
+
+[node name="PipeUpSprite" type="Sprite2D" parent="PipeUp"]
+position = Vector2(-36, -414)
+texture = ExtResource("2_53g1d")
+centered = false
+
+[node name="PipeUpCollision" type="CollisionShape2D" parent="PipeUp"]
+position = Vector2(0, -207)
+shape = SubResource("RectangleShape2D_qwxp8")
+
+[node name="PipeDown" type="StaticBody2D" parent="." groups=["Pipes"]]
+position = Vector2(36, 464)
+collision_layer = 4
+collision_mask = 17
+
+[node name="PipeDownSprite" type="Sprite2D" parent="PipeDown"]
+position = Vector2(-36, 0)
+texture = ExtResource("2_53g1d")
+centered = false
+flip_v = true
+
+[node name="PipeDownCollision" type="CollisionShape2D" parent="PipeDown"]
+position = Vector2(0, 207)
+shape = SubResource("RectangleShape2D_qwxp8")
+
+[node name="SeparationMarker" type="Marker2D" parent="."]
+position = Vector2(36, 414)
+
+[node name="ScoreUpArea" type="Area2D" parent="."]
+position = Vector2(36, 414)
+collision_layer = 8
+collision_mask = 17
+
+[node name="ScoreUpAreaCollision" type="CollisionShape2D" parent="ScoreUpArea"]
+shape = SubResource("RectangleShape2D_4eu2r")
+
+[node name="PipeVisible" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(36, 414)
+scale = Vector2(3.6, 41.4)
+
+[connection signal="screen_exited" from="PipeVisible" to="." method="_on_pipe_visible_screen_exited"]

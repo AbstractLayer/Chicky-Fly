@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ChickyFly"
+config/tags=PackedStringArray("2d", "finished", "prototype")
+run/main_scene="res://scenes/Game/flappy_bird.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://textures/sprites/pinto1.png"
+
+[autoload]
+
+Global="*res://global/Global.gd"
+
+[display]
+
+window/size/viewport_width=288
+window/size/viewport_height=512
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/project-time-tracker/plugin.cfg")
+
+[global_group]
+
+Player=""
+Pipes=""
+
+[input]
+
+Touch={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Walls"
+2d_physics/layer_3="Pipes"
+2d_physics/layer_4="ScoreUp"
+2d_physics/layer_5="QueueFree"
+2d_physics/layer_6="Layer 6"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
